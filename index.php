@@ -43,6 +43,10 @@ function createRedirectInDB($pdo, $obj) {
 
 header("Access-Control-Allow-Origin: *");
 
+require __DIR__."/core/configurations/apps/links/admin_password.php";
+if ((in_array($_SERVER['REQUEST_METHOD'], array("POST", "PATCH", "DELETE")) || ($_SERVER['REQUEST_METHOD'] == "GET" && !isset($_GET["s"]) && !isset($_GET["i"]) && isset($_GET["stats"])) && (!isset($_SERVER['HTTP_API_KEY_PASSWORD']) || $_SERVER['HTTP_API_KEY_PASSWORD'] != $admin_password)))
+    die(json_encode("Valid password required in API-Key-Password header!"));
+
 try {
 	require __DIR__."/core/configurations/apps/links/db/pdo_for_links_db.php";
 	$pdo_for_links_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -97,7 +101,7 @@ try {
                 echo(json_encode($data));
             }
             break;
-        /*case "PATCH":
+        case "PATCH":
             if (isset($_GET["s"])) {
                 $data_in = file_get_contents("php://input");
                 $request = json_decode($data_in, true);
@@ -118,7 +122,7 @@ try {
                 $stmt->execute([$_GET["s"]]);
                 echo $stmt->rowCount();
             } else echo(json_encode(array("error" => "No slug or target to delete from db")));
-            break;*/
+            break;
         default:
             echo(
                 json_encode(

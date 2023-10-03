@@ -1,0 +1,6 @@
+core/configurations/apps/links/admin_password.php
+core/configurations/apps/links/db/password_for_links_db.php
+core/configurations/apps/links/db/user_name_for_links_db.php
+core/configurations/dbms/mysql/databases/name_of_the_links_db_in_mysql.php
+core/configurations/dbms/mysql/host_for_mysql.php
+core/configurations/dbms/mysql/port_for_mysql.php

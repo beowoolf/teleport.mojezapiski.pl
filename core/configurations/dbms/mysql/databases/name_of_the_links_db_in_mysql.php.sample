@@ -1,0 +1,5 @@
+<?php
+
+$name_of_the_links_db_in_mysql = 'fill_me';
+
+?>

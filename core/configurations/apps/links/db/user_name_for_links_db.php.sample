@@ -1,0 +1,5 @@
+<?php
+
+$user_name_for_links_db = 'fill_me';
+
+?>

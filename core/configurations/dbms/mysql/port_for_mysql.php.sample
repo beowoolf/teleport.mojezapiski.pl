@@ -1,0 +1,5 @@
+<?php
+
+$port_for_mysql = 3306;
+
+?>
